@@ -1,7 +1,10 @@
 // write your code here
 let ramenMenu = document.getElementById('ramen-menu')
 //fetch the data from api
-let fetchedData = fetch(' http://localhost:3002/ramens').then(res => res.json()).then(data => addImages(data))
+let fetchedData = fetch(' http://localhost:3002/ramens').then(res => res.json())
+fetchedData.then(data => addImages(data))
+fetchedData.then(data => console.log(data))
+
 //create a function to add images to the menu
 
 function addImages(data){
@@ -18,6 +21,12 @@ setTimeout(()=>{
     ramenImages[i].addEventListener('click', e =>{
         //console.log(document.querySelector('.detail-image').src)
         document.querySelector('.detail-image').src=ramenImages[i].src
+         fetchedData.then(data => assignName(data))
+        
+        function assignName(data){
+            document.querySelector('.name').innerText= data[i].name
+            document.querySelector('.restaurant').innerText= data[i].name
+        }
     })
 }
 },100)
@@ -41,6 +50,7 @@ function addNewMenu(e){
     newRamen[3]= e.target.querySelectorAll('input')[3].value
     newRamen[4]= e.target.querySelectorAll('input')[4].value
     e.target.querySelectorAll('input')[4].addEventListener('click', e =>postData(e))
+    e.reset()
 }
 
 //add event listener to create to post the data to the server
