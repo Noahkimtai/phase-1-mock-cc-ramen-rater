@@ -1,9 +1,9 @@
 // write your code here
-
+let ramenMenu = document.getElementById('ramen-menu')
 //fetch the data from api
 let fetchedData = fetch(' http://localhost:3002/ramens').then(res => res.json()).then(data => addImages(data))
 //create a function to add images to the menu
-let ramenMenu = document.getElementById('ramen-menu')
+
 function addImages(data){
     for(let i=0;i<data.length;i++){
         let img = document.createElement('img')
@@ -12,6 +12,15 @@ function addImages(data){
     }
 } 
 //Select the images
+setTimeout(()=>{
+    let ramenImages =ramenMenu.children
+    for (let i=0;i<ramenImages.length;i++){
+    ramenImages[i].addEventListener('click', e =>{
+        //console.log(document.querySelector('.detail-image').src)
+        document.querySelector('.detail-image').src=ramenImages[i].src
+    })
+}
+},100)
 
 
 //create new ramen
