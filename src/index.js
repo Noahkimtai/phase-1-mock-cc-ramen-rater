@@ -26,6 +26,8 @@ setTimeout(()=>{
         function assignName(data){
             document.querySelector('.name').innerText= data[i].name
             document.querySelector('.restaurant').innerText= data[i].name
+            document.querySelector('#comment-display').innerText= data[i].comment
+            document.querySelector('#rating-display').innerText= data[i].rating
         }
     })
 }
